@@ -5,7 +5,53 @@
  * @variable PRIVATE { Number } `total`
  * @return {object} `calculator` object that can be used
  */
+var calculatorModule = function(){
+  var total = 0;
+  var memory = 0;
 
+  function _load(number){
+    total = number;
+      return total;
+  }
+
+  function _getTotal(){
+    return total;
+  }
+
+  function _add(number){
+    total += number;
+    return total;
+  }
+
+  function _subtract(number){
+    total -= number;
+    return total;
+  }
+
+  function _multiply(number){
+    total *= number;
+    return total;
+  }
+
+  function _divide(number){
+    total /= number;
+    return total;
+  }
+
+  function _recallMemory(){
+    return memory;
+  }
+
+  return {
+    load: _load,
+    getTotal: _getTotal,
+    add: _add,
+    subtract: _subtract,
+    multiply: _multiply,
+    divide: _divide,
+    recallMemory: _recallMemory
+  };
+};
 
   /**
    * sets the `total` to the number passed in
