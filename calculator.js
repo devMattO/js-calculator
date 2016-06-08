@@ -9,8 +9,15 @@ var calculatorModule = function(){
   var total = 0;
   var memory = 0;
 
-  function _load(number){
-    total = number;
+  function validate(x){
+    if (typeof x !== 'number') {
+      throw Error('Error');
+    }
+  }
+
+  function _load(x){
+    validate(x);
+    total = x;
       return total;
   }
 
@@ -18,28 +25,40 @@ var calculatorModule = function(){
     return total;
   }
 
-  function _add(number){
-    total += number;
+  function _add(x){
+    validate(x);
+    total += x;
     return total;
   }
 
-  function _subtract(number){
-    total -= number;
+  function _subtract(x){
+    validate(x);
+    total -= x;
     return total;
   }
 
-  function _multiply(number){
-    total *= number;
+  function _multiply(x){
+    validate(x);
+    total *= x;
     return total;
   }
 
-  function _divide(number){
-    total /= number;
+  function _divide(x){
+    validate(x);
+    total /= x;
     return total;
   }
 
   function _recallMemory(){
     return memory;
+  }
+
+  function _saveMemory(){
+    memory = total;
+  }
+
+  function _clearMemory(){
+    memory = 0;
   }
 
   return {
@@ -49,7 +68,9 @@ var calculatorModule = function(){
     subtract: _subtract,
     multiply: _multiply,
     divide: _divide,
-    recallMemory: _recallMemory
+    recallMemory: _recallMemory,
+    saveMemory: _saveMemory,
+    clearMemory: _clearMemory
   };
 };
 
